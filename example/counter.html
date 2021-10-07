@@ -1,0 +1,9 @@
+<div id="scope">
+  <button $on-click="$.count++">Increment</button>
+  <strong $text="$.count"></strong>
+  <button $on-click="$.count--">Decrement</button>
+  <script type="module">
+    import $$ from "../index.js";
+    $$(scope, { count: 0 });
+  </script>
+</div>
