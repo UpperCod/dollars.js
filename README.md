@@ -9,7 +9,7 @@ Create reactive documents easily thanks to `$$`, example:
   <button $on-click="$.count--">Decrement</button>
   <script type="module">
     import $$ from "https://unpkg.com/2dollars";
-    new $$({ count: 0 });
+    const state = $$({ count: 0 });
   </script>
 </div>
 ```
