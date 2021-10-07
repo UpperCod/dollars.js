@@ -1,4 +1,4 @@
-## 2dollars
+## dollars.js
 
 Create reactive documents easily thanks to `$$`, example:
 
@@ -8,7 +8,7 @@ Create reactive documents easily thanks to `$$`, example:
   <strong $text="$.count"></strong>
   <button $on-click="$.count--">Decrement</button>
   <script type="module">
-    import $$ from "../index.js";
+    import $$ from "https://unpkg.com/dollars.js";
     $$(counter, { count: 0 });
   </script>
 </div>
