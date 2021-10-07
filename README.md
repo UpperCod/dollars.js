@@ -3,13 +3,13 @@
 Create reactive documents easily thanks to `$$`, example:
 
 ```html
-<div>
+<div id="counter">
   <button $on-click="$.count++">Increment</button>
   <strong $text="$.count"></strong>
   <button $on-click="$.count--">Decrement</button>
   <script type="module">
-    import $$ from "https://unpkg.com/2dollars";
-    const state = $$({ count: 0 });
+    import $$ from "../index.js";
+    $$(counter, { count: 0 });
   </script>
 </div>
 ```
