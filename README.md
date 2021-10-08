@@ -2,14 +2,32 @@
 
 Create reactive documents easily thanks to `$$`, example:
 
+## Global
+
 ```html
-<div id="counter">
+<script src="https://unpkg.com/dollars.js"></script>
+<div>
   <button $on-click="$.count++">Increment</button>
   <strong $text="$.count"></strong>
   <button $on-click="$.count--">Decrement</button>
-  <script type="module">
-    import $$ from "https://unpkg.com/dollars.js";
-    $$(counter, { count: 0 });
+  <script>
+    $$({ count: 0 });
+  </script>
+</div>
+```
+
+## Module
+
+ESM support depends on package.json#exports.
+
+```html
+<div id="scope">
+  <button $on-click="$.count++">Increment</button>
+  <strong $text="$.count"></strong>
+  <button $on-click="$.count--">Decrement</button>
+  <script>
+    import $$ from "http://esm.sh/dollars.js";
+    $$(scope, { count: 0 });
   </script>
 </div>
 ```
