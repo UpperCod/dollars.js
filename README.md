@@ -63,3 +63,18 @@ define the property according to the state
 ```html
 <button $set-class="$.show?'hidden':null">Show?</button>
 ```
+
+### $each
+
+iterates over an array and defines access to the loop variable to retrieve cursor properties
+
+```html
+<ul>
+  <template $each="$.data">
+    <li>
+      name: <span $text="loop.name"></span><br />
+      email: <span $text="loop.email"></span><br />
+    </li>
+  </template>
+</ul>
+```

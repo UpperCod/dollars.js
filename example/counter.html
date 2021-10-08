@@ -1,9 +1,9 @@
-<div id="scope">
+<script src="../src/global.js"></script>
+<div>
   <button $on-click="$.count++">Increment</button>
-  <strong $text="$.count"></strong>
+  <strong $text="$.count">0</strong>
   <button $on-click="$.count--">Decrement</button>
-  <script type="module">
-    import $$ from "../index.js";
-    $$(scope, { count: 0 });
+  <script>
+    $$({ count: 0 });
   </script>
 </div>
