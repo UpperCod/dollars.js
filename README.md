@@ -16,6 +16,8 @@ Create reactive documents easily thanks to `$$`, example:
 </div>
 ```
 
+[codepen](https://codepen.io/uppchile/pen/eYEOmoR)
+
 ## Module
 
 ESM support depends on package.json#exports.
@@ -31,6 +33,8 @@ ESM support depends on package.json#exports.
   </script>
 </div>
 ```
+
+[codepen](https://codepen.io/uppchile/pen/QWMLoPJ)
 
 ## directives
 
