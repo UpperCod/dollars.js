@@ -1,11 +1,11 @@
 {
   "name": "dollars.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
-  "main": "./src/global.js",
-  "module": "./src/host.js",
+  "main": "./global.js",
+  "module": "./host.js",
   "exports": {
-    "./": "./src/host.js"
+    "./": "./host.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
