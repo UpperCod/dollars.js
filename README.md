@@ -1,4 +1,4 @@
-## dollars.js
+![Dollars.js](https://raw.githubusercontent.com/UpperCod/dollars.js/master/brand/dollars.js.svg);
 
 Create reactive documents easily thanks to `$$`, example:
 
