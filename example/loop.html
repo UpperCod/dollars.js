@@ -1,0 +1,31 @@
+<script src="../global.js"></script>
+<div>
+  <ul>
+    <template $each="$.data">
+      <li>
+        <span $text="loop.name"></span><br />
+        <template $each="loop.items">
+          <span $text="loop.id"></span>
+        </template>
+      </li>
+    </template>
+  </ul>
+  <script>
+    $$({
+      data: [
+        {
+          name: "A",
+          items: [{ id: 1 }, { id: 2 }, { id: 3 }],
+        },
+        {
+          name: "B",
+          items: [{ id: 2 }, { id: 3 }],
+        },
+        {
+          name: "C",
+          items: [{ id: 3 }],
+        },
+      ],
+    });
+  </script>
+</div>

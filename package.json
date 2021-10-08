@@ -1,6 +1,6 @@
 {
   "name": "dollars.js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "./global.js",
   "module": "./host.js",

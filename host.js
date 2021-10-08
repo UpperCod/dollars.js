@@ -102,8 +102,8 @@ export class Host {
     const { parentElement, content } = target;
     const fn = this.fn(`return ${selector}`);
     const items = [];
-    return () => {
-      const data = fn();
+    return (loop) => {
+      const data = fn(loop);
       data.forEach((item, index) => {
         if (!items[index]) {
           const binding = [];
