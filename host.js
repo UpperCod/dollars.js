@@ -77,7 +77,7 @@ export class Host {
   }
   fn(content) {
     const fn = Function("$", "loop", content);
-    return (loop) => fn(this.$, loop);
+    return (loop) => fn.call(this.$, this.$, loop);
   }
   $on(target, type, value) {
     const fn = this.fn(value);
