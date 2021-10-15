@@ -1,18 +1,50 @@
-export const symbol$$ = Symbol("$$");
+export const States = new WeakMap();
+
+/**
+ * template
+ */
+
+/**
+ * create a controller for the state to which dollar will react
+ */
+export class State {
+  constructor(state) {
+    this.binding = [];
+    this.$ = this.init(state);
+  }
+  /**
+   *
+   * @param {Object<string,any>} state create the proxy to reflect the state
+   * @returns
+   */
+  init(state) {
+    return new Proxy(state, {
+      set: (target, prop, value) => {
+        target[prop] = value;
+        this.update();
+      },
+    });
+  }
+  update() {
+    this.binding.forEach((fn) => fn());
+  }
+}
 
 export class Host {
+  /**
+   * prefix to capture attributes
+   */
   prefix = "$";
+  /**
+   *
+   * @param {Element} host
+   * @param {*} state
+   */
   constructor(host, state) {
-    host[symbol$$] = host[symbol$$] || {
-      $: new Proxy(typeof state == "function" ? state : state, {
-        set(target, prop, value) {
-          target[prop] = value;
-          host[symbol$$].binding.forEach((fn) => fn());
-        },
-      }),
-      binding: [],
-    };
-    Object.assign(this, host[symbol$$]);
+    if (!States.has(state)) {
+      States.set(state, state instanceof State ? state : new State(state));
+    }
+    Object.assign(this, States.get(state));
     this.template(host);
   }
   /**
@@ -104,7 +136,7 @@ export class Host {
     const items = [];
     return (loop) => {
       const data = fn(loop);
-      data.forEach((item, index) => {
+      data?.forEach((item, index) => {
         if (!items[index]) {
           const binding = [];
           const host = content.cloneNode(true);
@@ -124,7 +156,7 @@ export class Host {
         }
       });
       items
-        .splice(data.length)
+        .splice(data?.length)
         .forEach(({ childNodes }) =>
           childNodes.forEach((item) => item.remove())
         );
