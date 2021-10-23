@@ -5,6 +5,6 @@
   href = href === src ? src + "/host.js" : href;
   self.$$ =
     self.$$ ||
-    ((state, host = document.currentScript?.parentElement) =>
-      import(href).then(({ default: $$ }) => $$(host, state)));
+    ((state, host = document.currentScript?.parentElement, config) =>
+      import(href).then(({ default: $$ }) => $$(host, state, config)));
 })(window);

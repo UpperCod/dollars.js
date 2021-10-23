@@ -7,9 +7,9 @@ Create reactive documents easily thanks to `$$`, example:
 ```html
 <script src="https://unpkg.com/dollars.js"></script>
 <div>
-  <button $on-click="$.count++">Increment</button>
-  <strong $text="$.count"></strong>
-  <button $on-click="$.count--">Decrement</button>
+  <button $on-click="count++">Increment</button>
+  <strong $text="count"></strong>
+  <button $on-click="count--">Decrement</button>
   <script>
     $$({ count: 0 });
   </script>
@@ -24,9 +24,9 @@ ESM support depends on package.json#exports.
 
 ```html
 <div id="scope">
-  <button $on-click="$.count++">Increment</button>
-  <strong $text="$.count"></strong>
-  <button $on-click="$.count--">Decrement</button>
+  <button $on-click="count++">Increment</button>
+  <strong $text="count"></strong>
+  <button $on-click="count--">Decrement</button>
   <script>
     import $$ from "http://esm.sh/dollars.js";
     $$(scope, { count: 0 });
@@ -51,7 +51,7 @@ add a handler to the node
 Print the state in text format inside the node
 
 ```html
-Static text <span $text="$.message"></span>
+Static text <span $text="message"></span>
 ```
 
 ### $html
@@ -59,7 +59,7 @@ Static text <span $text="$.message"></span>
 Print the state in html format inside the node
 
 ```html
-Static html <span $html="$.message"></span>
+Static html <span $html="message"></span>
 ```
 
 ### $show
@@ -67,7 +67,7 @@ Static html <span $html="$.message"></span>
 define display if the state is false
 
 ```html
-<button $show="$.show">Show?</button>
+<button $show="show">Show?</button>
 ```
 
 ### $toggle-\<type\>[-\<optional\>]
@@ -75,7 +75,7 @@ define display if the state is false
 define or remove property according to state
 
 ```html
-<button $toggle-class-hidden="$.show">Show?</button>
+<button $toggle-class-hidden="show">Show?</button>
 ```
 
 ### $set-\<type\>
@@ -83,7 +83,7 @@ define or remove property according to state
 define the property according to the state
 
 ```html
-<button $set-class="$.show?'hidden':null">Show?</button>
+<button $set-class="show?'hidden':null">Show?</button>
 ```
 
 ### $each
@@ -92,7 +92,7 @@ iterates over an array and defines access to the loop variable to retrieve curso
 
 ```html
 <ul>
-  <template $each="$.data">
+  <template $each="data">
     <li>
       name: <span $text="loop.name"></span><br />
       email: <span $text="loop.email"></span><br />

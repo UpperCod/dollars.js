@@ -1,7 +1,7 @@
 export const States = new WeakMap();
 
 /**
- * template
+ * @typedef {{prefix:string}} Config
  */
 
 /**
@@ -32,15 +32,13 @@ export class State {
 
 export class Host {
   /**
-   * prefix to capture attributes
-   */
-  prefix = "$";
-  /**
    *
    * @param {Element} host
    * @param {*} state
+   * @param {Config} [config]
    */
-  constructor(host, state) {
+  constructor(host, state, config = { prefix: "$" }) {
+    this.config = config;
     if (!States.has(state)) {
       States.set(state, state instanceof State ? state : new State(state));
     }
@@ -54,8 +52,9 @@ export class Host {
    */
   template(host, ctx = this) {
     const Tree = document.createTreeWalker(host, 1);
-    const { binding, prefix } = ctx;
+    const { binding } = ctx;
     let { currentNode: target } = Tree;
+    const { prefix } = this.config;
 
     while (target) {
       const { attributes } = target;
@@ -76,7 +75,7 @@ export class Host {
     binding.forEach((fn) => fn(ctx.loop));
   }
   fn(content) {
-    const fn = Function("$", "loop", content);
+    const fn = Function("$", "loop", `with($){ ${content} }`);
     return (loop) => fn.call(this.$, this.$, loop);
   }
   $on(target, type, value) {
@@ -141,7 +140,6 @@ export class Host {
           const binding = [];
           const host = content.cloneNode(true);
           this.template(host, {
-            prefix: this.prefix,
             binding,
             loop: item,
           });
@@ -164,4 +162,13 @@ export class Host {
   }
 }
 
-export default (host, state) => new Host(host, state).$;
+/**
+ *
+ * @param {Element} host
+ * @param {*} state
+ * @param {Config} config
+ * @returns
+ */
+const $$ = (host, state, config) => new Host(host, state, config).$;
+
+export default $$;
