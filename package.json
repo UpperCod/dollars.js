@@ -3,14 +3,25 @@
   "version": "0.5.0",
   "description": "",
   "main": "./global.js",
-  "module": "./host.js",
-  "exports": {
-    "./": "./host.js",
-    "./host": "./host.js"
-  },
+  "module": "./src/host.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "exports": "exports src/host.js --dist ./ --types --exports --main host --ignore-build"
   },
   "author": "uppercod",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@atomico/exports": "^0.20.0"
+  },
+  "exports": {
+    ".": "./src/host.js"
+  },
+  "types": "types/host.d.ts",
+  "typesVersions": {
+    "*": {
+      "host": [
+        "./types/host.d.ts"
+      ]
+    }
+  }
 }
