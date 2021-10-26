@@ -5,7 +5,8 @@
   "main": "./global.js",
   "scripts": {
     "test": "wtr tests/**/*.test.js --node-resolve",
-    "exports": "exports ./host.js  --types --exports --main host --ignore-build"
+    "exports": "exports ./host.js  --types --exports --main host --ignore-build",
+    "prepare": "npm run test && npm run exports"
   },
   "author": "uppercod",
   "license": "ISC",
