@@ -1,16 +1,18 @@
 {
   "name": "dollars.js",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "",
   "main": "./global.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "wtr tests/**/*.test.js --node-resolve",
     "exports": "exports ./host.js  --types --exports --main host --ignore-build"
   },
   "author": "uppercod",
   "license": "ISC",
   "devDependencies": {
-    "@atomico/exports": "^0.20.0"
+    "@atomico/exports": "^0.20.0",
+    "@esm-bundle/chai": "*",
+    "@web/test-runner": "^0.13.20"
   },
   "module": "./host.js",
   "exports": {

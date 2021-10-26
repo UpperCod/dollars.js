@@ -1,6 +1,6 @@
 ![Dollars.js](https://raw.githubusercontent.com/UpperCod/dollars.js/master/brand/dollars.js.svg);
 
-Create reactive documents easily thanks to `$$`, example:
+Easily create reactive HTML documents thanks to `$$`, example:
 
 ## Global
 

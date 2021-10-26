@@ -22,6 +22,7 @@ export class State {
       set: (target, prop, value) => {
         target[prop] = value;
         this.update();
+        return target[prop];
       },
     });
   }
@@ -30,14 +31,20 @@ export class State {
   }
 }
 
+/**
+ * @template {Object<string,any>} T
+ */
 export class Host {
   /**
-   *
    * @param {Element} host
-   * @param {*} state
+   * @param {T} state
    * @param {Config} [config]
    */
   constructor(host, state, config = { prefix: "$" }) {
+    /**
+     * @type {T}
+     */
+    this.$ = {};
     this.config = config;
     if (!States.has(state)) {
       States.set(state, state instanceof State ? state : new State(state));
@@ -88,15 +95,15 @@ export class Host {
   }
   $html(target, value) {
     const fn = this.fn(`return ${value}`);
-    return (loop) => (target.html = fn(loop));
+    return (loop) => (target.innerHTML = fn(loop));
   }
   $show(target, value) {
     const fn = this.fn(`return ${value}`);
     return (loop) => {
       if (fn(loop)) {
-        target.style.display = "none";
-      } else {
         target.style.removeProperty("display");
+      } else {
+        target.style.display = "none";
       }
     };
   }
@@ -163,11 +170,11 @@ export class Host {
 }
 
 /**
- *
+ * @template {Object<string,any>} T
  * @param {Element} host
- * @param {*} state
+ * @param {T} state
  * @param {Config} config
- * @returns
+ * @returns {T}
  */
 const $$ = (host, state, config) => new Host(host, state, config).$;
 
