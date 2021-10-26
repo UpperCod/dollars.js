@@ -87,7 +87,9 @@ export class Host {
   }
   $on(target, type, value) {
     const fn = this.fn(value);
-    target.addEventListener(type, () => fn());
+    let currentLoop;
+    target.addEventListener(type, () => fn(currentLoop));
+    return (loop) => (currentLoop = loop);
   }
   $text(target, value) {
     const fn = this.fn(`return ${value}`);
@@ -124,7 +126,7 @@ export class Host {
     return (loop) => {
       const value = fn(loop);
       if (type in target) {
-        target[fn] = value;
+        target[type] = value;
       } else {
         target[value ? "setAttribute" : "removeAttribute"](type, value);
       }

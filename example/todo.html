@@ -1,0 +1,48 @@
+<script src="../global.js"></script>
+<div>
+  <h1>
+    Todo -
+    <small
+      $text="'Complete:'+ task.filter(({checked})=>checked).length"
+    ></small>
+  </h1>
+  <form $on-submit="addTask(event)">
+    <input $set-value="input" $on-input="input = event.target.value" />
+    <button class="button">Add task</button>
+  </form>
+  <ul>
+    <template $each="task">
+      <li>
+        <span $text="loop.title"></span>
+        <input
+          type="checkbox"
+          $set-checked="loop.checked"
+          $on-click="toggleTask(loop)"
+        />
+      </li>
+    </template>
+  </ul>
+
+  <script>
+    $$({
+      input: "",
+      task: [{ title: "Task 1", checked: true }],
+      addTask(event) {
+        event.preventDefault();
+        if (!this.input) return;
+
+        this.task = this.task.concat({
+          title: this.input,
+          checked: false,
+        });
+
+        this.input = "";
+      },
+      toggleTask(data) {
+        this.task = this.task.map((ref) =>
+          ref == data ? { ...data, checked: !ref.checked } : ref
+        );
+      },
+    });
+  </script>
+</div>

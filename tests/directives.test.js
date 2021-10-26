@@ -87,6 +87,20 @@ describe("directives", () => {
     expect(host.querySelector(".active")).to.is.not.null;
   });
 
+  it("set-checked", () => {
+    const host = document.createElement("div");
+
+    host.innerHTML = `<input type="checked" $set-checked="checked"/>`;
+
+    const state = $$(host, { checked: false });
+
+    expect(host.querySelector("input").checked).to.is.false;
+
+    state.checked = true;
+
+    expect(host.querySelector("input").checked).to.is.true;
+  });
+
   it("each", () => {
     const host = document.createElement("div");
 
