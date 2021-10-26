@@ -51,7 +51,7 @@ export class Host<T extends {
         loop: any;
     }): void;
     fn(content: any): (loop: any) => any;
-    $on(target: any, type: any, value: any): void;
+    $on(target: any, type: any, value: any): (loop: any) => any;
     $text(target: any, value: any): (loop: any) => any;
     $html(target: any, value: any): (loop: any) => any;
     $show(target: any, value: any): (loop: any) => void;
