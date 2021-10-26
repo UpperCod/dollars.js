@@ -23,14 +23,22 @@ export class State {
     };
     update(): void;
 }
-export class Host {
+/**
+ * @template {Object<string,any>} T
+ */
+export class Host<T extends {
+    [x: string]: any;
+}> {
     /**
-     *
      * @param {Element} host
-     * @param {*} state
+     * @param {T} state
      * @param {Config} [config]
      */
-    constructor(host: Element, state: any, config?: Config | undefined);
+    constructor(host: Element, state: T, config?: Config | undefined);
+    /**
+     * @type {T}
+     */
+    $: T;
     config: Config;
     /**
      *
@@ -62,10 +70,12 @@ export type Config = {
     prefix: string;
 };
 /**
- *
+ * @template {Object<string,any>} T
  * @param {Element} host
- * @param {*} state
+ * @param {T} state
  * @param {Config} config
- * @returns
+ * @returns {T}
  */
-declare function $$(host: Element, state: any, config: Config): any;
+declare function $$<T extends {
+    [x: string]: any;
+}>(host: Element, state: T, config: Config): T;
